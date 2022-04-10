@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>My Events List</h1>
+
+    <form action="/events" method="post"> 
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date">
+        <p></p>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+        <p></p>
+        <label for="guests">Guests</label>
+        <input type="number" name="guests" id="guests">
+        <p></p>
+        <label for="room">Room</label>
+        <input type="text" name="room" id="room">
+        <p></p>
+
+        <label for="description">Description</label>
+        <textarea name="description" rows="2" cols="30" id="description"></textarea>
+
+        <input type="submit" value="Add Task">
+      </form>
+
+      
+
+    {% for event in all_events %}
+        <p>
+            {{event.date}}: <b> {{ event.name }} </b> {{event.number_of_guests}} <b> {{event.room_location}} </b> {{event.description}}
+            {% if event.done %}
+                <span> &#9989; </span>
+            {% endif %} 
+        </p>
+    {% endfor %}
+    
+{% endblock %}
